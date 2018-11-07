@@ -31,6 +31,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Make the node_modules directory available as a static route
+app.use('/scripts', express.static(path.join(__dirname, 'node_modules')));
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
