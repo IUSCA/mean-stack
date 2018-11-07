@@ -60,7 +60,7 @@
   </div>
   <div class="row">
     <div class="col">
-      <table class="table table-bordered">
+      <table class="table table-bordered table-sm">
         <thead>
         <th ng-repeat="col in columns">{{col}}</th>
         <!--Use ng-repeat to create a table header for each column-->
@@ -68,9 +68,10 @@
         <tbody>
         <tr ng-repeat="row in data">
           <td ng-repeat="col in columns">
-            {{row[col]}}
+            {{row[col]}} <small ng-if="row[col] !== '' && row['d'+col] !== undefined">+/- {{row['d'+col]}}</small>
             <!--Use nested ng-repeat to create a row for each document in results -->
             <!--then a cell for each column in each row-->
+            <!--Use ng-if to show magnitude errors if defined-->
           </td>
         </tr>
         </tbody>
