@@ -30,8 +30,24 @@ exports.init = init;
 var starSchema = mongoose.Schema({
     name: String,
     ra: Number,
-    dec: Number
+    dec: Number,
+
+    //GeoJSON
+    location: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        }
+    }
 });
+
+// Create index on location for geoJSON to function
+starSchema.index({location: '2dsphere'});
 
 // Export the schema
 // First argument is the *singular* name of the collection your model is for.
