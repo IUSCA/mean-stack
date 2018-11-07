@@ -20,7 +20,11 @@
           function($scope, $http){
 
               // An array to hold the column names, to be used by ng-repeat
-              $scope.columns = ['name', 'ra','dec', 'g','r','i','z','Y'];
+              $scope.columns = ['name', 'ra','dec', 'u', 'g','r','i','z','Y'];
+
+              // Special magnitude fields
+              $scope.mag_fields = ['u','g','r','i','z','Y'];
+
               // An array to hold the results
               $scope.data = [];
 
@@ -29,10 +33,13 @@
               // and will be used to create the search query
 
               $scope.searchForm = {
-                  name: '',
-                  g_min: '',
-                  g_max: ''
+                  name: ''
               };
+
+              angular.forEach($scope.mag_fields, function(m){
+                  $scope.searchForm[m + '_min'] = '';
+                  $scope.searchForm[m + '_max'] = '';
+              });
 
               // A function to execute the call to the API
               $scope.doSearch = function() {
@@ -47,15 +54,17 @@
                       query.name = {'$regex': $scope.searchForm.name, '$options':'i'}
                   } // Use regex to do partial string matching
 
-                  // Now check the g_min and g_max fields
-                  if($scope.searchForm.g_min !== '') {
-                      query.g = {}; //create the g field
-                      query.g['$gte'] = $scope.searchForm.g_min;
-                  }
-                  if($scope.searchForm.g_max !== '') {
-                      if(query.g == undefined) query.g = {}; //create the g field only if it doesn't exist already
-                      query.g['$lte'] = $scope.searchForm.g_max;
-                  }
+                  // Now check all the magnitude fields
+                  angular.forEach($scope.mag_fields, function(m){
+                      if($scope.searchForm[m + '_min'] !== '') {
+                          query[m] = {}; //create the mag field
+                          query[m]['$gte'] = $scope.searchForm[m +'_min'];
+                      }
+                      if($scope.searchForm[m + '_max'] !== '') {
+                          if(query[m] == undefined) query[m] = {}; //create the field only if it doesn't exist already
+                          query[m]['$lte'] = $scope.searchForm[m +'_max'];
+                      }
+                  });
 
                   // Call $http, with the POST method, the URL, and the search object
                   $http({
@@ -85,29 +94,29 @@
 <div class="container" ng-controller="searchController">
   <h1>ADASS Tutorial Webapp</h1>
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-6">
 
       <div class="form-group">
         <label class="col-form-label" for="objectName">Object Name</label>
         <input type="text" class="form-control" ng-model="searchForm.name" placeholder="ADASS_33" id="objectName">
       </div>
-
-      <div class="form-group">
-        <label class="col-form-label" for="g_min">g`</label>
+    </div>
+    <div class="col-sm-2">
+      <div class="form-group" ng-repeat="m in mag_fields">
+        <label class="col-form-label">{{m}}`</label>
         <div class="input-group">
-          <input type="number" class="form-control" ng-model="searchForm.g_min" placeholder="18.1" id="g_min">
+          <input type="number" class="form-control" ng-model="searchForm[m + '_min']">
           <div class="input-group-append input-group-prepend">
             <span class="input-group-text"> : </span>
           </div>
-          <input type="number" class="form-control" ng-model="searchForm.g_max" placeholder="28.1" id="g_max">
+          <input type="number" class="form-control" ng-model="searchForm[m + '_max']">
         </div>
       </div>
 
-
-      <button class="btn btn-info" ng-click="doSearch()">Fetch Data</button>
-      <!--When this button is clicked, the scope function specified will be executed-->
     </div>
   </div>
+  <button class="btn btn-info" ng-click="doSearch()">Fetch Data</button>
+  <!--When this button is clicked, the scope function specified will be executed-->
   <div class="row">
     <div class="col">
       <table class="table table-bordered table-sm">
