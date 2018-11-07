@@ -1,5 +1,5 @@
-<html ng-app>
-<!--Add the ng-app property to the html tag to initiate an angular application-->
+<html ng-app="myApp">
+<!--Be sure to set the ng-app name to match the angular module name declared below!-->
 
 <head>
   <title>ADASS Tutorial Webapp</title>
@@ -11,22 +11,73 @@
   <!--Load the angular library on the client-->
   <script src="scripts/angular/angular.min.js"></script>
 
+  <script>
+      // Declare myapp as an angular module
+      var myapp = angular.module('myApp', []);
+
+      // Create a controller for my app with the built-in $scope and $http methods
+      myapp.controller('searchController', ['$scope', '$http',
+          function($scope, $http){
+
+              // An array to hold the column names, to be used by ng-repeat
+              $scope.columns = ['name', 'ra','dec', 'g','r','i','z','Y'];
+              // An array to hold the results
+              $scope.data = [];
+
+              // A function to execute the call to the API
+              $scope.doSearch = function() {
+                  //Define the url to query
+                  var url = '/stars';
+                  // Call $http, with the GET method and the URL
+                  $http({
+                      method: 'GET',
+                      url: url
+                  }).then(function(res){
+                      // Successful response, send data to the browser console to inspect
+                      console.log(res.data);
+                      // Assign the response data to a scope variable
+                      $scope.data = res.data;
+                  }, function(err) {
+                      console.log('Error contacting API');
+                      // If unsuccessful, send the error response to the console for inspection
+                      console.log(err);
+                  });
+              };
+          }]);
+  </script>
 </head>
 
 <body>
 
-  <div class="container">
-    <h1>ADASS Tutorial Webapp</h1>
-    <div class="row">
-      <div class="col-sm-4">
-        <input class="form-control" ng-model="name">
-        <!--Use ng-model for 2-way binding on form elements-->
-        <br>
-        <h3>Hello {{name}}!</h3>
-        <!--Use double braces {{}} for 1-way binding (displaying current values)-->
-      </div>
+<!--Use ng-controller to specify which controller will handle this element and its children-->
+<div class="container" ng-controller="searchController">
+  <h1>ADASS Tutorial Webapp</h1>
+  <div class="row">
+    <div class="col-sm-4">
+      <button class="btn btn-info" ng-click="doSearch()">Fetch Data</button>
+      <!--When this button is clicked, the scope function specified will be executed-->
     </div>
   </div>
+  <div class="row">
+    <div class="col">
+      <table class="table table-bordered">
+        <thead>
+        <th ng-repeat="col in columns">{{col}}</th>
+        <!--Use ng-repeat to create a table header for each column-->
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in data">
+          <td ng-repeat="col in columns">
+            {{row[col]}}
+            <!--Use nested ng-repeat to create a row for each document in results -->
+            <!--then a cell for each column in each row-->
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 </body>
 
