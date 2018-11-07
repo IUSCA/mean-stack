@@ -22,3 +22,19 @@ var init = function(cb) {
 
 // Export the init function to make it available to other parts of the code
 exports.init = init;
+
+/////////////////////////////
+// DESCRIBE THE COLLECTION //
+/////////////////////////////
+
+var starSchema = mongoose.Schema({
+    name: String,
+    ra: Number,
+    dec: Number
+});
+
+// Export the schema
+// First argument is the *singular* name of the collection your model is for.
+// Mongoose automatically looks for the plural version of your model name.
+
+exports.Star = mongoose.model('Star', starSchema);
