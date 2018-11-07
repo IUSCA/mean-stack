@@ -24,14 +24,46 @@
               // An array to hold the results
               $scope.data = [];
 
+              // Declare the searchForm object
+              // This will be used by the search form elements
+              // and will be used to create the search query
+
+              $scope.searchForm = {
+                  name: '',
+                  g_min: '',
+                  g_max: ''
+              };
+
               // A function to execute the call to the API
               $scope.doSearch = function() {
                   //Define the url to query
-                  var url = '/stars';
-                  // Call $http, with the GET method and the URL
+                  var url = '/stars?limit=20';
+
+                  // Create an empty query object
+                  var query = {};
+
+                  // Check if the name field is empty
+                  if($scope.searchForm.name !== '') {
+                      query.name = {'$regex': $scope.searchForm.name, '$options':'i'}
+                  } // Use regex to do partial string matching
+
+                  // Now check the g_min and g_max fields
+                  if($scope.searchForm.g_min !== '') {
+                      query.g = {}; //create the g field
+                      query.g['$gte'] = $scope.searchForm.g_min;
+                  }
+                  if($scope.searchForm.g_max !== '') {
+                      if(query.g == undefined) query.g = {}; //create the g field only if it doesn't exist already
+                      query.g['$lte'] = $scope.searchForm.g_max;
+                  }
+
+                  // Call $http, with the POST method, the URL, and the search object
                   $http({
-                      method: 'GET',
-                      url: url
+                      method: 'POST',
+                      url: url,
+                      data: {
+                          query: query
+                      }
                   }).then(function(res){
                       // Successful response, send data to the browser console to inspect
                       console.log(res.data);
@@ -54,13 +86,31 @@
   <h1>ADASS Tutorial Webapp</h1>
   <div class="row">
     <div class="col-sm-4">
+
+      <div class="form-group">
+        <label class="col-form-label" for="objectName">Object Name</label>
+        <input type="text" class="form-control" ng-model="searchForm.name" placeholder="ADASS_33" id="objectName">
+      </div>
+
+      <div class="form-group">
+        <label class="col-form-label" for="g_min">g`</label>
+        <div class="input-group">
+          <input type="number" class="form-control" ng-model="searchForm.g_min" placeholder="18.1" id="g_min">
+          <div class="input-group-append input-group-prepend">
+            <span class="input-group-text"> : </span>
+          </div>
+          <input type="number" class="form-control" ng-model="searchForm.g_max" placeholder="28.1" id="g_max">
+        </div>
+      </div>
+
+
       <button class="btn btn-info" ng-click="doSearch()">Fetch Data</button>
       <!--When this button is clicked, the scope function specified will be executed-->
     </div>
   </div>
   <div class="row">
     <div class="col">
-      <table class="table table-bordered">
+      <table class="table table-bordered table-sm">
         <thead>
         <th ng-repeat="col in columns">{{col}}</th>
         <!--Use ng-repeat to create a table header for each column-->
@@ -68,7 +118,7 @@
         <tbody>
         <tr ng-repeat="row in data">
           <td ng-repeat="col in columns">
-            {{row[col]}}
+            {{row[col]}} <small ng-if="row[col] !== '' && row['d'+col] !== undefined">+/- {{row['d'+col]}}</small>
             <!--Use nested ng-repeat to create a row for each document in results -->
             <!--then a cell for each column in each row-->
           </td>
