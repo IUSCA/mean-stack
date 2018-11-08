@@ -4,11 +4,11 @@ This repository represents the end state of the tutorial.  The different branche
 
 ## Installation
 - Clone this repository
-- `cd ADASS_tutorial`
+- `cd mean-stack`
 - `npm install`
 - Complete database setup (see below)
 - `npm start`
 - Visit http://localhost:3000
 
 ## Database Setup
-`mongoimport --db ADASS --collection stars --file {$repo_path}/100k_stars.csv --type csv --headerline`
+`mongoimport --db ADASS --collection stars --file 100k_stars.csv --type csv --headerline`
