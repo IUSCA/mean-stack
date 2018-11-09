@@ -11,7 +11,7 @@ This repository represents the end state of the tutorial.  The different branche
 - Visit http://localhost:3000
 
 ## Database Setup
-`mongoimport --db ADASS --collection stars --file {$repo_path}/100k_stars.csv --type csv --headerline`
+`mongoimport --db ADASS --collection stars --file 100k_stars.csv --type csv --headerline`
 
 ## Cheatsheet
 *  [MEAN Stack Cheatsheet](https://docs.google.com/document/d/1mv8JhqXlggjaWaHEIa6vSQStE2_4Nn5Cxk_ksHihaQ0/edit?usp=sharing) - Useful list of commands, file descriptions, and code snippets.  A printed copy of the cheatsheet will be handed out at the start of the tutorial
