@@ -4,7 +4,7 @@ This repository represents the end state of the tutorial.  The different branche
 
 ## Installation
 - Clone this repository
-- `cd ADASS_tutorial`
+- `cd mean-stack`
 - `npm install`
 - Complete database setup (see below)
 - `npm start`
@@ -151,3 +151,4 @@ Take the following steps to preserve any changes you have made on a new branch b
 - Visit http://localhost:3000 
   - Run positional search queries through UI to see if results match.
   - Try RA=302.495 DEC=-45.502 and radius=300
+
