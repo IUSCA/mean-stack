@@ -26,7 +26,7 @@ Take the following steps to preserve any changes you have made on a new branch b
 
 - `git checkout -b ${new branch name}` 
 - `git commit -am 'saving my changes'`
-- `git checkout checkpoint_${n}`
+- `git checkout -t origin/checkpoint_${n}`
 - `npm install`
 - `npm start`
 
