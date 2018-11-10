@@ -40,8 +40,7 @@ Take the following steps to preserve any changes you have made on a new branch b
 
 ##### Verify checkpoint:
 
-- Visit http://localhost:3000
-  - Should see Express default view in browser window
+- Visit http://localhost:3000 - you should see Express default view in browser window
 
 - In node console should see:  
   - ``[nodemon] starting `node ./bin/www` ``
@@ -66,11 +65,9 @@ Take the following steps to preserve any changes you have made on a new branch b
 
 ##### Verify checkpoint:
 
-- Visit http://localhost:3000/stars
-  - Should see 10 database records
+- Visit http://localhost:3000/stars - you should see 10 database records
 
-- Visit http://localhost:3000/stars?limit=5
-  - Should see 5 database records
+- Visit http://localhost:3000/stars?limit=5 - you should see 5 database records
   
 ### checkpoint_4
 
