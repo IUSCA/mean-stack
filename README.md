@@ -79,8 +79,7 @@ Take the following steps to preserve any changes you have made on a new branch b
 
 ##### Verify checkpoint:
 
-- Visit http://localhost:3000 
-  - "Hello !" text is modified as text is entered in input box
+- Visit http://localhost:3000 - "Hello !" text is modified as text is entered in input box
   
 ### checkpoint_5
 
@@ -94,8 +93,7 @@ Take the following steps to preserve any changes you have made on a new branch b
 
 ##### Verify checkpoint:
 
-- Visit http://localhost:3000 
-  - Clicking "Fetch Data" button shows results in table
+- Visit http://localhost:3000 - Clicking "Fetch Data" button shows results in table
   
 ### checkpoint_6
 
