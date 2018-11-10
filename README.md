@@ -104,8 +104,7 @@ Take the following steps to preserve any changes you have made on a new branch b
 
 ##### Verify checkpoint:
 
-- Visit http://localhost:3000 
-  - Enter form data and check to see results match
+- Visit http://localhost:3000 - Enter form data and check to see results match
   
 ### checkpoint_7
 
@@ -113,8 +112,7 @@ Take the following steps to preserve any changes you have made on a new branch b
 
 ##### Verify checkpoint:
 
-- Visit http://localhost:3000 
-  - Enter form data and check to see results match
+- Visit http://localhost:3000 - Enter form data and check to see results match
   
 
 ### checkpoint_8
