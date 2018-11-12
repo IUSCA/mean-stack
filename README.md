@@ -16,6 +16,10 @@ This repository represents the end state of the tutorial.  The different branche
 ## Cheatsheet
 *  [MEAN Stack Cheatsheet](https://docs.google.com/document/d/1mv8JhqXlggjaWaHEIa6vSQStE2_4Nn5Cxk_ksHihaQ0/edit?usp=sharing) - Useful list of commands, file descriptions, and code snippets.  A printed copy of the cheatsheet will be handed out at the start of the tutorial
 
+## Tutorial Slides
+
+The slides used during the ADASS Tutorial on 2017-11-11 are in tutorial_slides.pdf
+
 # Tutorial Checkpoints
 
 At various points in the tutorial, attendees will be asked to switch to a particular checkpoint within this repository.  This ensures that all attendees are on the same page and have a working version of the code to proceed to the next section.
