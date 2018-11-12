@@ -11,8 +11,10 @@ This repository represents the end state of the tutorial.  The different branche
 - Visit http://localhost:3000
 
 ## Database Setup
-`mongoimport --db ADASS --collection stars --file {$repo_path}/100k_stars.csv --type csv --headerline`
+`mongoimport --db ADASS --collection stars --file 100k_stars.csv --type csv --headerline`
 
+## Cheatsheet
+*  [MEAN Stack Cheatsheet](https://docs.google.com/document/d/1mv8JhqXlggjaWaHEIa6vSQStE2_4Nn5Cxk_ksHihaQ0/edit?usp=sharing) - Useful list of commands, file descriptions, and code snippets.  A printed copy of the cheatsheet will be handed out at the start of the tutorial
 
 # Tutorial Checkpoints
 
@@ -24,7 +26,7 @@ Take the following steps to preserve any changes you have made on a new branch b
 
 - `git checkout -b ${new branch name}` 
 - `git commit -am 'saving my changes'`
-- `git checkout checkpoint_${n}`
+- `git checkout -t origin/checkpoint_${n}`
 - `npm install`
 - `npm start`
 
@@ -38,8 +40,7 @@ Take the following steps to preserve any changes you have made on a new branch b
 
 ##### Verify checkpoint:
 
-- Visit http://localhost:3000
-  - Should see Express default view in browser window
+- Visit http://localhost:3000 - you should see Express default view in browser window
 
 - In node console should see:  
   - ``[nodemon] starting `node ./bin/www` ``
@@ -64,11 +65,9 @@ Take the following steps to preserve any changes you have made on a new branch b
 
 ##### Verify checkpoint:
 
-- Visit http://localhost:3000/stars
-  - Should see 10 database records
+- Visit http://localhost:3000/stars - you should see 10 database records
 
-- Visit http://localhost:3000/stars?limit=5
-  - Should see 5 database records
+- Visit http://localhost:3000/stars?limit=5 - you should see 5 database records
   
 ### checkpoint_4
 
@@ -80,8 +79,7 @@ Take the following steps to preserve any changes you have made on a new branch b
 
 ##### Verify checkpoint:
 
-- Visit http://localhost:3000 
-  - "Hello !" text is modified as text is entered in input box
+- Visit http://localhost:3000 - "Hello !" text is modified as text is entered in input box
   
 ### checkpoint_5
 
@@ -95,8 +93,7 @@ Take the following steps to preserve any changes you have made on a new branch b
 
 ##### Verify checkpoint:
 
-- Visit http://localhost:3000 
-  - Clicking "Fetch Data" button shows results in table
+- Visit http://localhost:3000 - Clicking "Fetch Data" button shows results in table
   
 ### checkpoint_6
 
@@ -107,8 +104,7 @@ Take the following steps to preserve any changes you have made on a new branch b
 
 ##### Verify checkpoint:
 
-- Visit http://localhost:3000 
-  - Enter form data and check to see results match
+- Visit http://localhost:3000 - Enter form data and check to see results match
   
 ### checkpoint_7
 
@@ -116,8 +112,7 @@ Take the following steps to preserve any changes you have made on a new branch b
 
 ##### Verify checkpoint:
 
-- Visit http://localhost:3000 
-  - Enter form data and check to see results match
+- Visit http://localhost:3000 - Enter form data and check to see results match
   
 
 ### checkpoint_8
